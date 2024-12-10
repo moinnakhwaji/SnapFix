@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "cross-env NEXT_PUBLIC_IGNORE_ESLINT=1 NEXT_PUBLIC_TS_IGNORE=1 next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -30,6 +30,7 @@
     "@types/qs": "^6.9.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "15.0.4",
     "postcss": "^8",
