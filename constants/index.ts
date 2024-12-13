@@ -159,7 +159,7 @@ export const navLinks = [
       },
       icon: "filter.svg",
     },
-  };
+  } as const
   
   export const aspectRatioOptions = {
     "1:1": {

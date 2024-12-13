@@ -29,7 +29,7 @@ interface MongooseConnection {
     cached.promise = 
     cached.promise || 
     mongoose.connect(MONGODB_URL, { 
-      dbName: 'imaginify', bufferCommands: false 
+      dbName: 'SnapFix', bufferCommands: false 
     })
 
   cached.conn = await cached.promise;

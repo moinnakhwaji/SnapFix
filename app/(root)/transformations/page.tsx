@@ -1,8 +1,12 @@
+
 import React from 'react'
 
 const transformations = () => {
   return (
-    <div>transformations page</div>
+    <div>
+      transformations
+   
+    </div>
   )
 }
 

@@ -71,7 +71,7 @@ export default function RootLayout({
             </div>
 
             {/* Content */}
-            <div className="flex-1 bg-gray-100 p-6">
+            <div className="flex-1 text-white p-6 bg-black ">
               {children}
             </div>
           </div>
