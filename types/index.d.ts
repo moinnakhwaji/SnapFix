@@ -32,7 +32,7 @@ declare type CreateUserParams = {
       prompt: string | undefined;
       color: string | undefined;
     };
-    userId: string;
+    userId: any;
     path: string;
   };
   

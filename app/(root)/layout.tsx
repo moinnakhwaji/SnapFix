@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import Sidebar from "@/components/shared/Sidebar";
 import MobileNav from "@/components/shared/MobileNav";
+import { Toaster } from '@/components/ui/toaster'
 
 // Load Inter font
 const inter = Inter({
@@ -21,7 +22,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MY SaaS Application",
+  title: "SnapFix",
   description: "Modern and scalable SaaS solution",
 };
 
@@ -38,7 +39,7 @@ export default function RootLayout({
             {/* Mobile nav */}
             <div className="lg:hidden w-full bg-[#15171C] text-white p-2 flex items-center justify-between">
               <div className="text-center flex justify-center">
-                <h1 className="text-xl text-center font-extrabold text-[#5436ff] tracking-wide">
+                <h1 className="text-xl text-center font-extrabold text-purple-600 tracking-wide">
                   SnapFix
                 </h1>
                 
@@ -70,11 +71,12 @@ export default function RootLayout({
               <Sidebar />
             </div>
 
-            {/* Content */}
+         
             <div className="flex-1 text-white p-6 bg-black ">
               {children}
             </div>
           </div>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

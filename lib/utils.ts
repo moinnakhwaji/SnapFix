@@ -1,15 +1,7 @@
-// import { clsx, type ClassValue } from "clsx"
-// import { twMerge } from "tailwind-merge"
-
-// export function cn(...inputs: ClassValue[]) {
-//   return twMerge(clsx(inputs))
-// }
-
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
-
-import qs from "qs"
+import qs from "qs";
 import { twMerge } from "tailwind-merge";
 
 import { aspectRatioOptions } from "@/constants";
@@ -21,23 +13,19 @@ export function cn(...inputs: ClassValue[]) {
 // ERROR HANDLER
 export const handleError = (error: unknown) => {
   if (error instanceof Error) {
-    // Log the error message and stack trace
-    console.error("Error message:", error.message);
-    console.error("Stack trace:", error.stack);
-    throw error; // Rethrow the error to propagate it
+    // This is a native JavaScript error (e.g., TypeError, RangeError)
+    console.error(error.message);
+    throw new Error(`Error: ${error.message}`);
   } else if (typeof error === "string") {
-    // If it's a string, log it as a string message
-    console.error("Error:", error);
-    throw new Error(error); // Convert the string to an Error and throw it
+    // This is a string error message
+    console.error(error);
+    throw new Error(`Error: ${error}`);
   } else {
-    // Handle cases where the error is neither an instance of Error nor a string
-    console.error("An unknown error occurred");
-    throw new Error("An unknown error occurred");
+    // This is an unknown type of error
+    console.error(error);
+    throw new Error(`Unknown error: ${JSON.stringify(error)}`);
   }
 };
-
-
-
 
 // PLACEHOLDER LOADER - while image is transforming
 const shimmer = (w: number, h: number) => `
