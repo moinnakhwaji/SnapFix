@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="bg-[#15171C] h-full min-w-[260px] px-6 py-8 shadow-xl flex flex-col justify-between rounded-xl">
+    <div className="bg-[#15171C] h-[110vh] min-w-[260px] px-6 py-8 shadow-xl flex flex-col justify-between rounded-xl">
       {/* Logo Section */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold bg-gradient-to-r from-[#6556cd] to-[#4a42a2] text-transparent bg-clip-text tracking-widest">

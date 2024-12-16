@@ -11,10 +11,13 @@ import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
 
 interface SearchParamProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{
+    id: string | any;
+    type: TransformationTypeKey;
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+
 
 const transformations = async ({ params }: SearchParamProps) => {
 //@ts-ignore

@@ -328,7 +328,7 @@ const TransformationForm = ({
           <Button
             type="submit"
             onClick={onTransformHandler}
-            disabled={isTransforming || newTransformation === null}
+            disabled={isTransforming || newTransformation === null }
             className="bg-gradient-to-r from-[#ff7eb3] to-[#6556cd] text-white font-bold py-3 px-6 w-full rounded-2xl shadow-lg hover:shadow-xl hover:from-[#6556cd] hover:to-[#ff7eb3] focus:outline-none focus:ring-4 focus:ring-[#6556cd] transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isTransforming ? "Transforming..." : "APPly Transformation"}

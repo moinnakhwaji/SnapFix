@@ -11,7 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-
+import { transformationTypes } from "@/constants";
 import { IImage } from "@/lib/databases/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
 
@@ -46,45 +46,45 @@ export const Collection = ({
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#1f1e24] to-[#2a2730] p-8 rounded-xl shadow-xl">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-extrabold md:text-3xl text-gray-50 mr-1">Recent Edits</h2>
-        {hasSearch && <Search />}
+    <div className="p-4 sm:p-6 lg:p-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-200">Recent Edits</h2>
+        {hasSearch && <Search  />}
       </div>
 
       {images.length > 0 ? (
-        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {images.map((image) => (
             <Card image={image} key={image._id as string} />
           ))}
         </ul>
       ) : (
-        <div className="flex items-center justify-center h-40">
-          <p className="text-lg font-medium text-gray-400">No items found</p>
+        <div className="flex items-center justify-center h-40 text-gray-400 text-lg">
+          <p>Empty List</p>
         </div>
       )}
 
-      {totalPages > 1 && (
-        <Pagination className="mt-10">
-          <PaginationContent className="flex items-center justify-center gap-6">
+      {totalPages > 0 && (
+        <Pagination className="mt-10 flex justify-center">
+          <PaginationContent className="flex items-center space-x-4">
             <Button
               disabled={Number(page) <= 1}
-              className="text-gray-200 disabled:text-gray-500 hover:text-purple-400"
+              className="px-4 py-2 bg-gray-800 text-gray-300 rounded hover:bg-gray-700 disabled:opacity-50"
               onClick={() => onPageChange("prev")}
             >
-              <PaginationPrevious className="hover:scale-105 transition-transform" />
+              <PaginationPrevious className="hover:text-gray-100" />
             </Button>
 
-            <p className="text-gray-300 text-lg">
-              Page <span className="font-semibold text-white">{page}</span> of {totalPages}
+            <p className="text-gray-300">
+              {page} / {totalPages}
             </p>
 
             <Button
-              className="text-gray-200 disabled:text-gray-500 hover:text-purple-400"
+              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-500 disabled:opacity-50"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >
-              <PaginationNext className="hover:scale-105 transition-transform" />
+              <PaginationNext className="hover:text-gray-100" />
             </Button>
           </PaginationContent>
         </Pagination>
@@ -95,38 +95,32 @@ export const Collection = ({
 
 const Card = ({ image }: { image: IImage }) => {
   return (
-    <li className="bg-[#2a2730] rounded-xl shadow-lg overflow-hidden group">
-      <Link href={`/transformations/${image._id}`} className="block">
-        <div className="relative h-52 w-full">
-          <CldImage
-            src={image.publicId}
-            alt={image.title}
-            width={image.width}
-            height={image.height}
-            {...image.config}
-            loading="lazy"
-            className="h-full w-full object-cover group-hover:opacity-90 transition-opacity duration-300"
-            sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <p className="text-gray-100 font-semibold text-lg">View Transformation</p>
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="flex items-center justify-between">
-            {/* <p className="text-gray-100 font-medium truncate">{image.title}</p> */}
-            <Image
-              src={`/assets/icons/$
-                {transformationTypes[
+    <li className="relative group">
+      <Link href={`/transformations/${image._id}`} className="block overflow-hidden rounded-lg shadow-lg bg-gray-900">
+        <CldImage
+          src={image.publicId}
+          alt={image.title}
+          width={image.width}
+          height={image.height}
+          {...image.config}
+          loading="lazy"
+          className="h-52 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+        />
+        <div className="p-4 flex items-center justify-between">
+         
+          <Image
+            src={`/assets/icons/$
+              {
+                transformationTypes[
                   image.transformationType as TransformationTypeKey
                 ].icon
               }`}
-              alt={image.title}
-              width={24}
-              height={24}
-              className="ml-2"
-            />
-          </div>
+            alt={image.title}
+            width={24}
+            height={24}
+            className="ml-2"
+          />
         </div>
       </Link>
     </li>

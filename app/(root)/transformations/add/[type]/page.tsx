@@ -6,10 +6,13 @@ import { auth } from '@clerk/nextjs/server';
 import { getUserById } from '@/lib/actions/user.action';
 
 interface SearchParamProps {
-  params: {
-    type: keyof typeof transformationTypes; // Ensures 'type' matches keys in transformationTypes
-  };
+  params: Promise<{
+    id: string | any;
+    type: TransformationTypeKey;
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+
 
 // Ensure 'params' is awaited
 const AddtransFormtypePage = async ({ params }: SearchParamProps) => {

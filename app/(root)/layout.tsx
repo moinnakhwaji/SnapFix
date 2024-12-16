@@ -35,18 +35,16 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${inter.variable} ${spaceMono.variable} antialiased`}>
-          <div className="flex min-h-screen flex-col lg:flex-row">
+        <div className="flex h-screen lg:flex-row flex-col">
             {/* Mobile nav */}
             <div className="lg:hidden w-full bg-[#15171C] text-white p-2 flex items-center justify-between">
               <div className="text-center flex justify-center">
                 <h1 className="text-xl text-center font-extrabold text-purple-600 tracking-wide">
                   SnapFix
                 </h1>
-                
               </div>
               {/* Show Sign In button or UserButton based on authentication state */}
-              <div className="flex justify-center items-center">
-              <div className="">
+              <div className="flex items-center">
                 <SignedOut>
                   <SignInButton>
                     <button className="w-full bg-gradient-to-r from-[#6556cd] to-[#4a42a2] text-white px-6 py-2 rounded-lg hover:brightness-110 transition-all duration-300 shadow-lg">
@@ -55,24 +53,21 @@ export default function RootLayout({
                   </SignInButton>
                 </SignedOut>
                 <SignedIn>
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center">
                     <UserButton />
                   </div>
                 </SignedIn>
-              </div>
-              <div>
-              <MobileNav />
-              </div>
+                <MobileNav />
               </div>
             </div>
 
             {/* Sidebar for larger screens */}
-            <div className="w-80 hidden lg:block bg-[black] text-white">
+            <div className="w-80 hidden lg:block h-screen bg-black text-white overflow-auto">
               <Sidebar />
             </div>
 
-         
-            <div className="flex-1 text-white p-6 bg-black ">
+            {/* Main content area */}
+            <div className="flex-1 bg-black text-white p-6 overflow-auto">
               {children}
             </div>
           </div>
