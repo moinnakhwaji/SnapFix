@@ -19,6 +19,8 @@ interface SearchParamProps {
 }
 
 
+
+
 const transformations = async ({ params }: SearchParamProps) => {
 //@ts-ignore
   const { id } = params; // Now params is properly destructured

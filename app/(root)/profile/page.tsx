@@ -7,8 +7,21 @@ import Header from "@/components/shared/Header";
 import { getUserImages } from "@/lib/actions/image.action";
 import { getUserById } from "@/lib/actions/user.action";
 
-const Profile = async ({ searchParams }: SearchParamProps) => {
-  const page = Number(searchParams?.page) || 1;
+interface SearchParamProps {
+  params: Promise<{
+    id: string | any;
+    type: TransformationTypeKey;
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+
+
+const Profile = async ({ searchParams }: { searchParams: Promise<SearchParamProps["searchParams"]> }) => {
+  // Await searchParams to ensure it's resolved before using its properties
+  const resolvedSearchParams = await searchParams;
+
+  const page = Number(resolvedSearchParams?.page) || 1;
   const { userId } = await auth();
 
   if (!userId) redirect("/sign-in");
@@ -18,10 +31,9 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
-    <div className="my-3">
-    <Header title="Profile" subtitle={" "} />
-    </div>
-   
+      <div className="my-3">
+        <Header title="Profile" subtitle={" "} />
+      </div>
 
       <section className="profile bg-gray-900 text-white p-6 md:p-10 rounded-xl shadow-lg">
         <div className="profile-balance border-b border-gray-700 pb-6 mb-6">

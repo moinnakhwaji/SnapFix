@@ -7,12 +7,25 @@ import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.action";
 import { getImageById } from "@/lib/actions/image.action";
 
-const Page = async ({ params: { id } }: SearchParamProps) => {
-  const { userId } = await  auth();
+// Update the SearchParamProps to reflect that params is a Promise
+interface SearchParamProps {
+  params: Promise<{
+    id: string | any;
+    type: TransformationTypeKey;
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+const Page = async ({ params }: SearchParamProps) => {
+  const { userId } = await auth();
 
   if (!userId) redirect("/sign-in");
 
   const user = await getUserById(userId);
+
+  // Await the params before destructuring
+  const { id } = await params; // Resolving the Promise here
+
   const image = await getImageById(id);
 
   const transformation =

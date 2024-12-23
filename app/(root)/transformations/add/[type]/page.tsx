@@ -14,6 +14,7 @@ interface SearchParamProps {
 }
 
 
+
 // Ensure 'params' is awaited
 const AddtransFormtypePage = async ({ params }: SearchParamProps) => {
   // Await the dynamic parameter `params`
