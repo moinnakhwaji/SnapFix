@@ -52,6 +52,7 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
+      "hover:bg-transparent hover:border-purple-600 dark:hover:border-purple-600", // Updated hover effect with transparent background and purple border
       className
     )}
     {...props}
@@ -85,7 +86,7 @@ const PaginationNext = ({
     className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span>Next</span>
+    <span className="bg-purple-600">Next</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 )
@@ -97,7 +98,7 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn("flex h-9 w-9 items-center justify-center bg-purple-600", className)}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />

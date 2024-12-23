@@ -25,27 +25,29 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
       <AlertDialogTrigger asChild className="w-full rounded-full">
         <Button
           type="button"
-          className="button h-[44px] w-full md:h-[54px]"
+          className="h-[44px] w-full md:h-[54px] bg-red-600 text-white hover:bg-red-700"
           variant="destructive"
         >
           Delete Image
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="flex flex-col gap-10">
+      <AlertDialogContent className="flex flex-col gap-10 bg-gray-900 text-white rounded-lg">
         <AlertDialogHeader>
-          <AlertDialogTitle>
+          <AlertDialogTitle className="text-xl font-semibold">
             Are you sure you want to delete this image?
           </AlertDialogTitle>
-          <AlertDialogDescription className="p-16-regular">
-            This will permanently delete this image
+          <AlertDialogDescription className="text-gray-400">
+            This will permanently delete this image.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogFooter className="bg-gray-800">
+          <AlertDialogCancel className="bg-gray-700 text-gray-300 hover:bg-gray-600">
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
-            className="border bg-red-500 text-white hover:bg-red-600"
+            className="bg-red-600 text-white hover:bg-red-700"
             onClick={() =>
               startTransition(async () => {
                 await deleteImage(imageId);

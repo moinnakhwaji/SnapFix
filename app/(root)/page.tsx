@@ -30,22 +30,23 @@ const Home = async ({ searchParams }: { searchParams: Promise<SearchParamProps["
         <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-10">
           Unleash Your Creative Vision with <span className="text-indigo-500">SnapFix</span>
         </h1>
-        <ul className="flex justify-center flex-wrap gap-10">
-          {navLinks.slice(1, 5).map((link) => (
-            <Link
-              key={link.route}
-              href={link.route}
-              className="group flex flex-col items-center gap-4 transition-transform hover:scale-110"
-            >
-              <li className="flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg">
-                <Image src={link.icon} alt={link.label} width={24} height={24} />
-              </li>
-              <p className="text-lg font-medium text-center text-white group-hover:text-indigo-400">
-                {link.label}
-              </p>
-            </Link>
-          ))}
-        </ul>
+      <ul className="flex justify-center flex-wrap gap-10">
+  {navLinks.slice(1, 5).map((link) => (
+    <Link
+      key={link.route}
+      href={link.route}
+      className="group flex flex-col items-center gap-4 transition-transform hover:scale-110"
+    >
+      <li className="flex items-center justify-center w-16 h-16 rounded-full bg-white group-hover:bg-purple-800 transition-colors">
+        <Image src={link.icon} alt={link.label} width={24} height={24} />
+      </li>
+      <p className="text-lg font-medium text-center text-white group-hover:text-indigo-400">
+        {link.label}
+      </p>
+    </Link>
+  ))}
+</ul>
+
       </section>
 
       {/* Collection Section */}
