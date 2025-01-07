@@ -109,18 +109,16 @@ const Card = ({ image }: { image: IImage }) => {
         />
         <div className="p-4 flex items-center justify-between">
          
-          <Image
-            src={`/assets/icons/$
-              {
-                transformationTypes[
-                  image.transformationType as TransformationTypeKey
-                ].icon
-              }`}
-            alt={image.title}
-            width={24}
-            height={24}
-            className="ml-2"
-          />
+        <Image
+  src={`/assets/icons/${
+    transformationTypes[image.transformationType as keyof typeof transformationTypes]?.icon
+  }`}
+  alt={image.title}
+  width={24}
+  height={24}
+  className="ml-2"
+/>
+
         </div>
       </Link>
     </li>
